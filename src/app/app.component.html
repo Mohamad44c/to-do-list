@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="#" routerLink="home">To do</a>
+    <ng-container *ngIf="authService.currentUser$ | async as user; else signinButton">
+      <form class="d-flex" role="submit">
+        <button class="btn btn-outline-light" type="submit" routerLink="signin" (click)="signout">
+          Sign out
+        </button>
+      </form>
+    </ng-container>
+    <ng-template #signinButton>
+      <form class="d-flex" role="submit">
+      <button class="btn btn-outline-light" type="submit" routerLink="signin">
+        Sign in
+      </button>
+    </form>
+    </ng-template>
+    
+  </div>
+</nav>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

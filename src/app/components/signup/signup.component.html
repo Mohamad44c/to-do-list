@@ -1,0 +1,105 @@
+<div
+  class="container col-md-7"
+  style="border: 1px solid lightgray; border-radius: 10px"
+>
+  <h4 class="mb-4 mt-4">Sign up to start creating a to-do list</h4>
+  <form [formGroup]="signupForm" (ngSubmit)="submit()">
+    <!-- name field -->
+    <div class="mb-3 row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Full name"
+          formControlName="name"
+        />
+        <div
+          *ngIf="name?.errors?.['required']"
+          id="validationServerNameFeedback"
+          class="invalid-feedback"
+        >
+          Name is required
+        </div>
+      </div>
+    </div>
+    <!-- email field -->
+    <div class="mb-3 row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="email@example.com"
+          formControlName="email"
+        />
+        <div
+          *ngIf="email?.errors?.['required']"
+          id="validationServerEmailFeedback"
+          class="invalid-feedback"
+        >
+          Email is required
+        </div>
+      </div>
+    </div>
+    <!-- password field -->
+    <div class="mb-3 row">
+      <label for="inputPassword" class="col-sm-2 col-form-label"
+        >Password</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="***********"
+          formControlName="password"
+        />
+        <div *ngIf="password?.errors?.['required']" class="invalid-feedback">
+          Password is required
+        </div>
+      </div>
+    </div>
+    <!-- password field -->
+    <div class="mb-3 row">
+      <label for="inputPassword" class="col-sm-2 col-form-label"
+        >Confirm Password</label
+      >
+      <div class="col-sm-9">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="***********"
+          formControlName="confirmPassword"
+        />
+        <div
+          *ngIf="confirmPassword?.errors?.['required']"
+          class="invalid-feedback"
+        >
+          You need to confirm your password
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="signupForm.errors?.['PasswordsDontMatch']">
+      <h5 class="text-danger">Passwords should match</h5>
+    </div>
+    <!-- btn group -->
+    <div class="container text-center">
+      <div class="row row-cols-1">
+        <button
+          type="submit"
+          class="btn btn-primary mb-3 text-center mx-auto col-md-7"
+        >
+          Sign up
+        </button>
+        <button
+          class="mb-3 col-md-7 mx-auto btn btn-link"
+          type="button"
+          routerLink="../signin"
+        >
+          Already have an account?
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
