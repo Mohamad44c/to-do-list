@@ -1,0 +1,7 @@
+.todoContainer{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+.todoContainer .row>*{
+    padding: 0 !important;
+}

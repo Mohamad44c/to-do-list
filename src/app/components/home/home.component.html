@@ -1,2 +1,114 @@
-<h1 *ngIf="$user | async as user">Welcome {{user.email}}</h1>
+<div class="container col-md-6">
+  <h4 class="text-center mb-3" *ngIf="$user | async as user">
+    Welcome {{ user.email }}
+  </h4>
+</div>
 
+<div class="container-fluid">
+  <div class="container">
+    <div class="row mt-3" style="height: 500px">
+      <div class="col"></div>
+
+      <div class="col-md-6 bg-white">
+        <div class="card bg-primary mt-4">
+          <h4 class="text-center text-white ps-3 pt-2 pb-2">To-do List</h4>
+        </div>
+        <!-- shadow -->
+        <div class="">
+          <div class="input-group p-4">
+            <input
+              type="text"
+              class="form-control p-2"
+              placeholder="Add a new to do"
+              name="task"
+              [(ngModel)]="addTaskValue"
+            />
+            <button
+              class="btn btn-outline-success"
+              type="button"
+              id="button-addon2"
+              (click)="addTask()"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+
+        <h4 class="text-primary mt-2 text-center">Tasks</h4>
+        <div style="overflow-y: auto; height: 350px">
+          <div class="m-3" *ngFor="let task of taskArr">
+            <div class="p-2 shadow border">
+              <div class="input-group row ps-3">
+                <div class="card col-md-10 border-0">{{ task.taskName }}</div>
+                <!-- edit btn -->
+                <button
+                  class="btn btn-outline-warning col me-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  type="button"
+                  (click)="call(task)"
+                >
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <!-- delete btn -->
+                <button
+                  class="btn btn-outline-danger col"
+                  (click)="deleteTask(task)"
+                >
+                  <i class="fa-light fa-x"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Edit Task
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="input-group p-4">
+                  <input
+                    type="text"
+                    class="form-control p-2"
+                    placeholder="Edit a to do"
+                    name="task"
+                    [(ngModel)]="editTaskValue"
+                  />
+                  <button
+                    class="btn btn-outline-success"
+                    type="button"
+                    id="button-addon2"
+                    (click)="editTask()"
+                    data-bs-dismiss="modal"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col"></div>
+    </div>
+  </div>
+</div>
