@@ -39,21 +39,31 @@
           <div class="m-3" *ngFor="let task of taskArr">
             <div class="p-2 shadow border">
               <div class="input-group row ps-3">
-                <div class="card col-md-10 border-0">{{ task.taskName }}</div>
+                <div style="display: flex; flex-direction: row; width: 50%">
+                  <i
+                    class="fa-circle-check mx-auto mt-1" (click)="checkTask(task)"
+                    [ngClass]="task.isChecked ? 'fa-solid' : 'fa-regular primary'"
+                  ></i>
+
+                  <div class="card col-md-10 border-0">{{ task.taskName }}</div>
+                </div>
+
                 <!-- edit btn -->
                 <button
-                  class="btn btn-outline-warning col me-2"
+                  class="btn border-0 btn-outline-warning col me-2"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                   type="button"
                   (click)="call(task)"
+                  style="border-radius: 5px"
                 >
                   <i class="fa-regular fa-pen-to-square"></i>
                 </button>
                 <!-- delete btn -->
                 <button
-                  class="btn btn-outline-danger col"
+                  class="btn btn-outline-danger col border-0"
                   (click)="deleteTask(task)"
+                  style="border-radius: 5px"
                 >
                   <i class="fa-light fa-x"></i>
                 </button>

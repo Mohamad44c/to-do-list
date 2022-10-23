@@ -1,7 +1,13 @@
-.todoContainer{
-    border: 1px solid lightgray;
-    border-radius: 10px;
+.todoContainer {
+  border: 1px solid lightgray;
+  border-radius: 10px;
 }
-.todoContainer .row>*{
-    padding: 0 !important;
+.todoContainer .row > * {
+  padding: 0 !important;
+}
+.fa-solid {
+  color: #4bb543;
+}
+.primary {
+  color: #0275d8;
 }

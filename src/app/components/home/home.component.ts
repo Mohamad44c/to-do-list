@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   taskArr: Task[] = [];
   addTaskValue: string = '';
   editTaskValue: string = '';
+  isCheckedValue: boolean = false;
 
   constructor(
     private authService: AuthenticateService,
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.editTaskValue = '';
     this.addTaskValue = '';
+    this.isCheckedValue = true;
     this.taskObj = new Task();
     this.taskArr = [];
     this.getAllTasks();
@@ -55,6 +57,11 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  call(etask: Task) {
+    this.taskObj = etask;
+    this.editTaskValue = etask.taskName;
+  }
+
   editTask() {
     this.taskObj.taskName = this.editTaskValue;
     this.crudService.editTask(this.taskObj).subscribe(
@@ -63,6 +70,24 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         alert('Failed to update task');
+      }
+    );
+  }
+
+  checkTask(etask: Task) {
+    this.taskObj = etask;
+    if (this.isCheckedValue == true) {
+      etask.isChecked = this.isCheckedValue;
+    } else {
+      etask.isChecked = false;
+    }
+
+    this.crudService.checkOrUncheckTask(this.taskObj).subscribe(
+      (res) => {
+        this.ngOnInit();
+      },
+      (error) => {
+        alert('Failed to mark complete');
       }
     );
   }
@@ -76,10 +101,5 @@ export class HomeComponent implements OnInit {
         alert('Failed to detele task');
       }
     );
-  }
-
-  call(etask: Task) {
-    this.taskObj = etask;
-    this.editTaskValue = etask.taskName;
   }
 }

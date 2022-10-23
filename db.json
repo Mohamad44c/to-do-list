@@ -1,16 +1,19 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "taskName": "Hello"
-    },
-    {
       "id": 2,
-      "taskName": "Task 2"
+      "taskName": "task 2",
+      "isChecked": false
     },
     {
       "id": 3,
-      "taskName": "Hello"
+      "taskName": "task 3",
+      "isChecked": false
+    },
+    {
+      "id": 4,
+      "taskName": "Task 1",
+      "isChecked": false
     }
   ]
 }

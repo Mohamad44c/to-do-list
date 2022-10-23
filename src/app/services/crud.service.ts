@@ -11,6 +11,9 @@ export class CrudService {
     this.serviceUrl = 'http://localhost:3000/tasks';
   }
   addTask(task: Task): Observable<Task> {
+    if (task.taskName.length === 0) {
+      console.log('cannot add empty task');
+    }
     return this.http.post<Task>(this.serviceUrl, task);
   }
   getAllTasks(): Observable<Task[]> {
@@ -20,6 +23,9 @@ export class CrudService {
     return this.http.delete<Task>(this.serviceUrl + '/' + task.id);
   }
   editTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(this.serviceUrl + '/' + task.id, task);
+  }
+  checkOrUncheckTask(task: Task): Observable<Task> {
     return this.http.put<Task>(this.serviceUrl + '/' + task.id, task);
   }
 }
